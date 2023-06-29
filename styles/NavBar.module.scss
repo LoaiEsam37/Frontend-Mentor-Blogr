@@ -1,0 +1,235 @@
+
+.header {
+    z-index: 1;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+    position: relative;
+    color: #fff;
+    
+    .leftSide {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+        
+        .brand {
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+    }
+    
+    .rightSide {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        .menuToggler {
+            display: none;
+        }
+        .wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        nav {
+            transform: translateY(4px);
+            display: flex;
+            align-items: flex-end;
+            gap: 35px;
+            .dropDown {
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                transform: rotate(0);
+                .dropDownToggler {
+                    position: relative;
+                    color: #fff;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        left: calc(100% + 3px);
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width: 10px;
+                        height: 7px;
+                        background-image: url("../public/icon-arrow-light.svg");
+                    }
+                }
+                .dropDownItems {
+                    display: none;
+                    position: absolute;
+                    top: 100%;
+                    color: #000;
+                    flex-direction: column;
+                    gap: 10px;
+                    margin-top: 20px;
+                    background-color: #fff;
+                    padding: 20px 50px 20px 20px;
+                    border-radius: 5px;
+                    span:hover {
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+        .auth {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+            .login {
+                cursor: pointer;
+                font-weight: 500;
+            }
+            
+            .signup {
+                cursor: pointer;
+                color: #ff7b86;
+                padding: 13px 30px;
+                background-color: #fff;
+                border-radius: 25px;
+                font-weight: 500;
+                &:hover {
+                    background-color: #ff7b86;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+.dropDown.active {
+    .dropDownToggler::after {
+        transform: scaleY(-1) translateY(50%) !important;
+
+    }
+
+    .dropDownItems {
+        display: flex !important;
+    }
+}
+
+@media (max-width: 870px) {
+    
+    .rightSide {
+        justify-content: flex-end !important;
+        .menuToggler {
+            display: flex !important;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 18px;
+            cursor: pointer;
+        
+            span {
+                position: relative;
+                display: block;
+                width: 30px;
+                height: 2px;
+                background-color: #fff;
+                border-radius: 2px;
+                transition: transform 0.3s ease-in-out;
+            
+                &:first-of-type {
+                    transform-origin: top;
+                }
+
+                &:last-of-type {
+                    transform-origin: bottom;
+                }
+
+            }
+            
+        }
+
+        .wrapper {
+            display: none !important;
+        }
+    }
+    
+    .menuToggler.open {
+        span:first-of-type {
+        transform: rotate(45deg) !important;
+        top: 8px !important;
+        }
+    
+        span:nth-of-type(2) {
+            opacity: 0;
+        }
+        
+        span:last-of-type {
+            transform: rotate(-45deg) !important;
+            top: -8px !important;
+        }
+        
+    } 
+    .dropDownToggler::after {
+        background-image: url("../public/icon-arrow-dark.svg");
+    }
+    .wrapper.opened {
+        position: absolute;
+        display: flex !important;
+        flex-direction: column;
+        width: 100%;
+        height: 80vh;
+        padding: 20px;
+        border-radius: 5px;
+        top: 100px;
+        background-color: #fff;
+        gap: 20px;
+        font-size: 20px;
+        nav {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: max-content;
+            .dropDown {
+                justify-content: center;
+                align-items: center;
+                width: 100% !important;
+            }
+            .dropDown.active .dropDownItems {
+                display: flex !important;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                position: static;
+                background-color: #efeff1 !important;
+                width: 100%;
+                padding: 20px 50px;
+                margin-top: 10px !important;
+            }
+            .dropDownToggler {
+                color: #000 !important;
+                &::after {
+                    position: relative;
+                    background-image: url("../public/icon-arrow-dark.svg") !important;
+                }
+            }
+        }
+        .auth {
+            width: 100%;
+            padding-top: 25px;
+            border-top: solid 2px #efeff1;
+            flex-direction: column;
+            .login {
+                color: #000;
+            }
+            .signup {
+                color: #fff;
+                padding: 13px 40px;
+                background-image: linear-gradient(90deg, #fe876f, #fb4554);
+            }
+        }
+    }
+}
