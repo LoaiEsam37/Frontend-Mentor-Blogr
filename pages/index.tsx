@@ -1,7 +1,7 @@
 import Head from "next/head"
 import Image from "next/image"
 import { Inter } from "next/font/google"
-import styles from "@/styles/Home.module.css"
+import styles from "@/styles/Home.module.scss"
 import NavBar from "@/components/NavBar"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -21,9 +21,15 @@ export default function Home() {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main className={`${styles.main} ${inter.className}`}>
-                <NavBar />
-            </main>
+            <article>
+                <main className={`${styles.main} ${inter.className}`}>
+                    <section className={styles.firstSection}>
+                        <div className={styles.container}>
+                            <NavBar />
+                        </div>
+                    </section>
+                </main>
+            </article>
         </>
     )
 }
